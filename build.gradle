@@ -113,8 +113,24 @@ license {
 }
 
 publishing {
+    repositories {
+        maven {
+            url = project.ext.get('publish.url')
+            credentials {
+                username project.ext.get('publish.username')
+                password project.ext.get('publish.password')
+            }
+        }
+    }
     publications {
         maven(MavenPublication) {
+            from components.java
+        }
+        nexus(MavenPublication) {
+            version = "0.0.1-SNAPSHOT"
+            artifactId = "yurita"
+            groupId = "org.yurita"
+
             from components.java
         }
     }
