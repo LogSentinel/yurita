@@ -71,8 +71,8 @@ assemble {
 dependencies {
     compileOnly "org.apache.spark:spark-core_2.11:$sparkVersion"
     compileOnly "org.apache.spark:spark-sql_2.11:$sparkVersion"
+    compileOnly "com.clust4j:clust4j:$clust4jVersion"
     compile group: 'com.typesafe.scala-logging', name: 'scala-logging_2.11', version: '3.9.0'
-    compile files('libs/clust4j-1.2.4-SNAPSHOT.jar')
 
     // test
     testCompile "org.apache.spark:spark-sql_2.11:$sparkVersion"
