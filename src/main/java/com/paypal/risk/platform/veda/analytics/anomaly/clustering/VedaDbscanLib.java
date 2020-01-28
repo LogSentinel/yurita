@@ -18,12 +18,16 @@ package com.paypal.risk.platform.veda.analytics.anomaly.clustering;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.math3.ml.distance.DistanceMeasure;
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
 
 
 
 // internal implementation of a customized DBSCAN application
 public class VedaDbscanLib {
+
+  public static DistanceMeasure distanceCalculator = new EuclideanDistance();
 
   /**
    * Will return points that did not belong to any cluster.
@@ -36,7 +40,7 @@ public class VedaDbscanLib {
       int neighbors = 0;
       for (Iterable<double[]> ref : refPoints) {
         for (double[] refP : ref) {
-          double distance = new EuclideanDistance().compute(p, refP);
+          double distance = distanceCalculator.compute(p, refP);
           if (distance <= eps) {
             neighbors += 1;
             if (neighbors == minNeighbors) {
